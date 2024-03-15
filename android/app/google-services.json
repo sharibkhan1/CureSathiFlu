@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "202759056429",
+    "project_id": "cures-9495f",
+    "storage_bucket": "cures-9495f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202759056429:android:7de770554c5f8cd46ddca4",
+        "android_client_info": {
+          "package_name": "com.example.tpop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYD7Yo74DwR2ApPGB6BGu95Tw7OYjKY5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

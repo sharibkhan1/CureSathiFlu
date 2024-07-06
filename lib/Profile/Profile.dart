@@ -95,7 +95,7 @@ class ProfilePage extends StatelessWidget {
 
             Container(
               decoration: BoxDecoration(
-                  color: Color(0xFF7A9BA4FF),
+                  color: Colors.grey.shade400,
                   borderRadius: BorderRadius.only(topRight: Radius.circular(30),topLeft: Radius.circular(30))
               ),
               child: Padding(padding: EdgeInsets.all(24),
@@ -104,31 +104,26 @@ class ProfilePage extends StatelessWidget {
                     Row(
                       children: [
                         const Text("Account Settings",
-                          style: TextStyle(fontSize: 19,fontWeight: FontWeight.w800),),
+                          style: TextStyle(fontSize: 25,fontWeight: FontWeight.w800),),
                       ],
                     ),
                     SizedBox(height: 16,),
 
-                    SettingMenu(icon: Icons.home,title: "My Address",subTitle:"mediccine at home",onTap: (){},),
-                    SettingMenu(icon: Icons.home,title: "My Address",subTitle:"mediccine at home",onTap: (){},),
-                    SettingMenu(icon: Icons.home,title: "My Address",subTitle:"mediccine at home",onTap: (){},),
-                    SettingMenu(icon: Icons.home,title: "My Address",subTitle:"mediccine at home",onTap: (){},),
-                    SettingMenu(icon: Icons.home,title: "My Address",subTitle:"mediccine at home",onTap: (){},),
-                    SettingMenu(icon: Icons.home,title: "My Address",subTitle:"mediccine at home",onTap: (){},),
-                    SettingMenu(icon: Icons.home,title: "My Address",subTitle:"mediccine at home",onTap: (){},),
+                    SettingMenu(icon: Icons.mobile_friendly,title: "details",subTitle:"mediccine at home",onTap: (){},),
+                    SettingMenu(icon: Icons.list_alt,title: "permission",subTitle:"mediccine at home",onTap: (){},),
+                    SettingMenu(icon: Icons.lock,title: "Password",subTitle:"mediccine at home",onTap: (){},),
 
                     SizedBox(height: 16,),
                     Row(
                       children: [
                         const Text("App Settings",
-                          style: TextStyle(fontSize: 19,fontWeight: FontWeight.w800),),
+                          style: TextStyle(fontSize: 25,fontWeight: FontWeight.w800),),
                       ],
                     ),
                     SizedBox(height: 16,),
 
-                    SettingMenu(icon: Icons.home,title: "My Address",subTitle:"mediccine at home",trailing: Switch(value: true,onChanged: (value){},),),
-                    SettingMenu(icon: Icons.home,title: "My Address",subTitle:"mediccine at home",trailing: Switch(value: false,onChanged: (value){},),),
-                    SettingMenu(icon: Icons.home,title: "My Address",subTitle:"mediccine at home",trailing: Switch(value: false,onChanged: (value){},),),
+                    SettingMenu(icon: Icons.light_mode,title: "Light Mode",subTitle:"mediccine at home",trailing: Switch(value: true,onChanged: (value){},),),
+                    SettingMenu(icon: Icons.access_alarm_outlined,title: "notification",subTitle:"mediccine at home",trailing: Switch(value: false,onChanged: (value){},),),
 
                     SizedBox(height: 16,),
 

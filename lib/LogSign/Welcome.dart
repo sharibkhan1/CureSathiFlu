@@ -19,12 +19,11 @@ class WelcomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Image(image: const AssetImage("assets/images/gojo.jpg"), height: height * 0.6),
+            Image(image: const AssetImage("assets/images/MEDI-ALERTAI_AT_WORK__1_-removebg-preview.png"), height: height * 0.6),
             Column(
               children: [
-                Text("Build Awesome Apps", style: Theme.of(context).textTheme.headline3),
+                Text("Build Awesome Apps"),
                 Text("Let's put your creativity on the development highway.",
-                    style: Theme.of(context).textTheme.bodyText1,
                     textAlign: TextAlign.center),
               ],
             ),
@@ -32,19 +31,31 @@ class WelcomeScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: OutlinedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.only(left: 25, right: 25, top: 15, bottom: 15),
+                      textStyle: const TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
+                      backgroundColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                    ),
                     onPressed: () {
                       Get.to(LoginScreen());
                     },
-                    child: Text("Login".toUpperCase()),
+                    child: Text("Login".toUpperCase(),style: TextStyle(color: Color(0xFF51604F),),),
                   ),
                 ),
                 const SizedBox(width: 10.0),
                 Expanded(
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.only(left: 25, right: 25, top: 15, bottom: 15),
+                      textStyle: const TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
+                      backgroundColor: const Color(0xFF51604F),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                    ),
                     onPressed: () {
                       Get.to(SignUpScreen());
                     },
-                    child: Text("Signup".toUpperCase()),
+                    child: Text("Signup".toUpperCase(),style: TextStyle(color: Colors.white),),
                   ),
                 ),
               ],

@@ -33,7 +33,6 @@ class SignUpFooterWidget extends StatelessWidget {
           child: Text.rich(TextSpan(children: [
             TextSpan(
               text: "Already have an Account?",
-              style: Theme.of(context).textTheme.bodyText1,
             ),
             TextSpan(text: "Login".toUpperCase())
           ])),

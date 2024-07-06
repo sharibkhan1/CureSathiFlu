@@ -5,19 +5,19 @@ import 'package:get/get.dart';
 class UserModel{
   final String id;
   String fullName;
-  final String username;
-  final String email;
+  String username;
+  String email;
   String phoneNo;
   String profilePicture;
 
 
 UserModel({
   required this.id,
-  required this.fullName,
-  required this.username,
-  required this.email,
-  required this.phoneNo,
-  required this.profilePicture,
+   required this.fullName,
+   required this.username,
+   required this.email,
+   required this.phoneNo,
+   required this.profilePicture,
 });
 
 static UserModel empty()=> UserModel(id: '', fullName: '', username: '', email: '', phoneNo: '', profilePicture: '');

@@ -35,7 +35,7 @@ class MedTypeGrid extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                child: Image.asset(image,height: 100,width: 100,),
+                child: Image.asset(image,height: 130,width: 130,),
               ),
             ),
             SizedBox(height: 10),

@@ -15,9 +15,14 @@ import 'package:tpop/LogSign/Welcome.dart';
 import 'package:tpop/OnBoardingScreen/OnBoardingScreen.dart';
 import 'package:tpop/OnBoardingScreen/Splash.dart';
 import 'firebase_options.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:provider/provider.dart';
 
+import 'provider/cartProvider.dart';
+import 'provider/favprovider.dart';
 
 Future <void> main() async {
+  await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
   final onboarding = prefs.getBool('onboarding')??false;
@@ -32,50 +37,20 @@ Future <void> main() async {
   Get.put(NetworkManager());
 }
 
-class SplashScreen extends StatelessWidget {
-  final bool onboarding;
-
-  const SplashScreen({Key? key, required this.onboarding}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Lottie.asset(
-              'assets/images/Animation - 1704652756931.json',
-              width: 400,
-              height: 400,
-              alignment: Alignment.center,
-              fit: BoxFit.cover,
-            ),
-            SizedBox(height: 20),
-            Text(
-              "AROGYA",
-              style: TextStyle(
-                fontSize: 24,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 class MyApp extends StatelessWidget {
   final bool onboarding;
-  const MyApp({super.key,this.onboarding = false});
+  const MyApp({this.onboarding = false});
+
   @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
+  Widget build(BuildContext context) => MultiProvider(
+    providers:[
+      ChangeNotifierProvider(create: (_) => FavoriteProvider()),
+      ChangeNotifierProvider(create: (_) => CartProvider()),
+    ],
+    child: GetMaterialApp(
       initialBinding: GeneralBindings(),
       title: 'My Flutter App',
       home: onboarding ? WelcomeScreen() : OnboardingScreen(),
-    );
-  }
+    ),
+  );
 }

@@ -1,10 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tpop/Appointment/Details.dart';
+import 'package:tpop/Compo/doctormodel.dart';
 import 'package:tpop/MEdication/List_style.dart';
 import 'package:tpop/dataset.dart';
 
-class MedicationPage extends StatelessWidget {
+class MedicationPage extends StatefulWidget {
   final String medicationType;
   final Color backgroundColor;
 
@@ -15,12 +17,27 @@ class MedicationPage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _MedicationPageState createState() => _MedicationPageState();
+}
+
+class _MedicationPageState extends State<MedicationPage> {
+  int selectedPriceFilter = -1;
+
+  @override
   Widget build(BuildContext context) {
-    // Filter the dataset based on the selected medication type
-    final List<Map<String, dynamic>> filteredDoctors = dataset.where((doctor) => doctor['specialty'] == medicationType).toList();
+    // Filter the dataset based on the selected medication type and price filter
+    List<Doctor> filteredDoctors = dataset
+        .where((doctor) => doctor.specialty == widget.medicationType)
+        .toList();
+
+    if (selectedPriceFilter != -1) {
+      filteredDoctors = filteredDoctors
+          .where((doctor) => doctor.price <= selectedPriceFilter)
+          .toList();
+    }
 
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: widget.backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -42,27 +59,65 @@ class MedicationPage extends StatelessWidget {
               SizedBox(height: 20,),
               Padding(
                 padding: const EdgeInsets.only(left: 18.0),
-                 child:Row(
-                   children: [
-                     Text(
-                       'MedicationType:  ',
-                       style: TextStyle(
-                         fontSize: 20,
-                         fontWeight: FontWeight.w600,
-                       ),
-                     ),
-                     Text(
-                      medicationType,
+                child:Row(
+                  children: [
+                    Text(
+                      'MedicationType:  ',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      widget.medicationType,
                       style: TextStyle(
                         fontSize: 20,
                         color: Color(0xFF51604F),
                         fontWeight: FontWeight.w600,
                       ),
-                     ),
-                   ],
-                 ),
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: 0,),
+              SizedBox(height: 20,),
+              Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: SegmentedButton(
+                  segments: const [
+                    ButtonSegment(value: -1, label: Text('All ')),
+                    ButtonSegment(value: 50, label: Text('50₹ ')),
+                    ButtonSegment(value: 70, label: Text('70₹ ')),
+                    ButtonSegment(value: 100, label: Text('100₹')),
+                  ],
+                  selected: {selectedPriceFilter},
+                  onSelectionChanged: (newSelection) {
+                    setState(() {
+                      selectedPriceFilter = newSelection.first;
+                    });
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+                      if (states.contains(MaterialState.selected)) {
+                        return Colors.white;
+                      } else {
+                        return Color(0xFFA4BFA7);
+                      }
+                    }),
+                    foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+                      if (states.contains(MaterialState.selected)) {
+                        return Colors.black;
+                      } else {
+                        return Colors.white;
+                      }
+                    }),
+                    fixedSize: MaterialStateProperty.all<Size>(Size.fromHeight(40)),
+                    shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    )),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20,),
               // Display the filtered list of doctors
               ListView.builder(
                 shrinkWrap: true,
@@ -70,21 +125,14 @@ class MedicationPage extends StatelessWidget {
                 itemCount: filteredDoctors.length,
                 itemBuilder: (context, index) {
                   final doctor = filteredDoctors[index];
+
                   return Liststyle(
-                    image: doctor['image'],
-                    title: doctor['title'],
-                    subtitle: doctor['subtitle'],
-                    diftitle: doctor['diftitle'],
-                    price: doctor['price'].toString(),
-                    onPressed: () {Get.to(() => DocDetail(
-                      image: doctor['image'], // Pass the image of the selected doctor
-                      title: doctor['title'], // Pass the title of the selected doctor
-                      subtitle: doctor['subtitle'], // Pass the subtitle of the selected doctor
-                      specialty: doctor['specialty'], // Pass the specialty of the selected doctor
-                      price: doctor['price'].toString(), // Pass the price of the selected doctor
-                      diftitle: doctor['diftitle'],
-                      address: doctor['address'],
-                    ),);},
+                    doctor: doctor,
+                    onPressed: () {
+                      Get.to(() => DocDetail(
+                        doctor: doctor,
+                      ));
+                    },
                   );
                 },
               ),

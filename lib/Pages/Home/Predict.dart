@@ -34,11 +34,10 @@ class Prediction extends StatelessWidget {
               SizedBox(height: 20,),
 
               ElevatedButton(onPressed: (){},
-                  child: Text('Predict',),
+                  child: Text('Predict',style: TextStyle(color: Colors.white),),
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.only(top: 15,bottom: 15,left: 10,right: 10),
                     backgroundColor: Color(0xff51604F),
-                    onPrimary: Colors.white,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
                   ),
               ),

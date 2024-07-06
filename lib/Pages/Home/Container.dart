@@ -65,17 +65,16 @@ class CustomContainers extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: const [
-                        Text("Start"),
+                        Text("Start",style: TextStyle(color: Colors.white),),
                         SizedBox(width: 5),
-                        Icon(Icons.keyboard_arrow_right),
+                        Icon(Icons.keyboard_arrow_right,color: Colors.white,),
                       ],
                     ),
                     onPressed: onPressed,
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.only(left: 25, right: 25, top: 15, bottom: 15),
                       textStyle: const TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
-                      primary: const Color(0xFF51604F),
-                      onPrimary: Colors.white,
+                      backgroundColor: const Color(0xFF51604F),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                     ),
                   ),

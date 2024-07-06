@@ -10,10 +10,10 @@ class LoginHeaderWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Image(
-            image: const AssetImage('assets/images/gojo2.jpg'),
+            image: const AssetImage('assets/images/Phone1.jpg'),
             height: size.height * 0.2),
-        Text("Welcome Back,", style: Theme.of(context).textTheme.headline1),
-        Text("Make it work, make it right, make it fast.", style: Theme.of(context).textTheme.bodyText1),
+        Text("Welcome Back,",),
+        Text("Make it work, make it right, make it fast."),
       ],
     );
   }

@@ -14,9 +14,9 @@ class ForgetPasswordScreen {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('"Make Selection!"',
-                style: Theme.of(context).textTheme.headline2),
+               ),
             Text('"Select one of the options given below to reset your password."',
-                style: Theme.of(context).textTheme.bodyText2),
+                ),
             const SizedBox(height: 30.0),
             ForgetPasswordBtnWidget(
               onTap: () {
